@@ -1,0 +1,92 @@
+h1 {
+    color: orange;
+    text-align: center;
+    font-family: "Segoe Script";
+    font-size: 48px;
+}
+
+.footer {
+    clear: both;
+}
+/*Отвечает за список кнопок.*/
+.menu {
+    float: left;
+    width: 30%;
+}
+
+.content {
+    width: 70%;
+    margin-left: 30%;
+}
+
+.buttonwrapper {
+    display: inline-block;
+}
+
+.buttonwrapper a {
+    line-height: 48px;
+    padding-bottom: 3px;
+    margin-bottom: 3px;
+    font-family: "Comic Sans MS";
+    font-weight: bold;
+    font-size: 36px;
+    color: #00FF00;
+    text-shadow: 1px 1px 2px black;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.buttonwrapper:hover a {
+    color: #FFD966;
+}
+
+.buttonwrapper div {
+    cursor: pointer;
+    vertical-align: top;
+    margin-top: 1px;
+    line-height: 48px;
+    background-image: url("img/button1.png");
+    height: 48px;
+}
+
+.buttonwrapper:hover div {
+    margin-top: 1px;
+    line-height: 48px;
+    background-image: url("img/button2.png");
+    height: 48px;
+}
+
+.buttonleft {
+    width: 25px;
+    background-repeat: no-repeat;
+    display: inline-block;
+}
+
+.buttonright {
+    width: 25px;
+    background-repeat: no-repeat;
+    display: inline-block;
+    background-position: 0 -48px;
+}
+
+.buttoncenter {
+    display: inline-block;
+    background-position: 0 48px;
+}
+
+.content {
+    font-size: 24px;
+    font-family: "Cambria";
+}
+
+.longlink {
+    word-wrap: break-word;
+    display: block;
+}
+.blueheader {
+    font-size: 48px;
+    color: #00ffdd;
+    margin: 0 25%;
+    padding-top: 100px;
+    display: block;
+}
