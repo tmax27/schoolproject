@@ -9,6 +9,14 @@ if (empty($_GET["id"])) { /*Empty решает, настроена ли пере
 $result = $db->query("select * from articles where id=" . $_GET["id"]);    /*Написано неправильно.*/
 /*print_r($result->fetch_assoc());*/
 $fullcontent = $result->fetch_assoc(); /*fetch_assoc возвращает текущий ряд набора результатов как объект.*/
+$fullcontent["USERS"]=explode("+", $fullcontent["USERS"]); /*delimiter - разделитель*/
+print_r($fullcontent["USERS"]);
+print_r($_SESSION["USER"]["Role"]); /*Выводит статус пользователя.*/
+foreach ($fullcontent["USERS"] as $role){
+    if ($role == $_SESSION["USER"]["Role"]){
+        print "Success";
+    }
+}
 $content = $fullcontent["BODY"];    /*$ - переменная*/
 $title = $fullcontent["TITLE"] ?>
 <!DOCTYPE html>
