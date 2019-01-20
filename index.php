@@ -10,12 +10,19 @@ $result = $db->query("select * from articles where id=" . $_GET["id"]);    /*Н�
 /*print_r($result->fetch_assoc());*/
 $fullcontent = $result->fetch_assoc(); /*fetch_assoc возвращает текущий ряд набора результатов как объект.*/
 $fullcontent["USERS"]=explode("+", $fullcontent["USERS"]); /*delimiter - разделитель*/
-print_r($fullcontent["USERS"]);
-print_r($_SESSION["USER"]["Role"]); /*Выводит статус пользователя.*/
+//print_r($fullcontent["USERS"]);
+//print_r($_SESSION["USER"]["Role"]); /*Выводит статус пользователя.*/
+$correctuser = false;
 foreach ($fullcontent["USERS"] as $role){
     if ($role == $_SESSION["USER"]["Role"]){
-        print "Success";
+        $correctuser = true;
     }
+}
+if (!$correctuser){
+    header('HTTP/1.0 403 Forbidden'); /*Написать НАДО до любого вывода (session_start и header)*/ /*Это ошибочный заголовок (нормальный 200).*/
+    print("User not logged in!");
+    DrawForm();
+    exit();
 }
 $content = $fullcontent["BODY"];    /*$ - переменная*/
 $title = $fullcontent["TITLE"] ?>
