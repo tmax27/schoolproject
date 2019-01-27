@@ -39,3 +39,5 @@ $content = $fullcontent["BODY"];
 </body>
 <!--Выводит BODY из HeidiSQL-->
 <!--Максимум символов зависит от 1 строки-->
+
+<!--$_SESSION["USER"] == "admin"-->

@@ -13,7 +13,7 @@ $fullcontent["USERS"]=explode("+", $fullcontent["USERS"]); /*delimiter - раз�
 //print_r($fullcontent["USERS"]);
 //print_r($_SESSION["USER"]["Role"]); /*Выводит статус пользователя.*/
 $correctuser = false;
-foreach ($fullcontent["USERS"] as $role){
+foreach ($fullcontent["USERS"] as $role){   /*Конструкция foreach предоставляет простой способ перебора массивов.*/
     if ($role == $_SESSION["USER"]["Role"]){
         $correctuser = true;
     }
@@ -61,7 +61,13 @@ $title = $fullcontent["TITLE"] ?>
 <h1><?php print($title); ?></h1>
 <?php require "Menu.php" ?>
 <div class="content"><?php print($content); ?></div>
-<a href="/admin.php?id=<?php print($_GET["id"]); ?>" target="_blank">Редактировать</a>
+<?php
+if ($_SESSION["USER"]["Role"] == "admin"){
+?>
+    <a href="/admin.php?id=<?php print($_GET["id"]); ?>" target="_blank">Редактировать</a>
+<?php
+}
+?>
 <div class="footer"></div>
 </body>
 </html>

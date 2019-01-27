@@ -15,7 +15,7 @@ function login()
         $login = (strtolower($_POST["login"])); /*Перевели в нижний регистр.    Strtolower ищет в условии позицию первого случая подусловия */
         $password = sha1($_POST["password"]);
         if (preg_match("/^[a-z\d]+$/", $login)) {   /*Preg_match выполняет глобальное совмещение обычного выражения (из букв и цифр).*/
-            $result = $db->query("select * from `users` where `login`='$login' and `password`='$password'")->fetch_assoc();
+            $result = $db->query("select * from `users` where `login`='$login' and `password`='$password'")->fetch_assoc(); /*Query - запрос*/
 //            print_r($result);
 //            print_r($_POST);
 //            print("select * from `users` where `login`='$login' and `password`='$password'");
@@ -34,10 +34,17 @@ function login()
 
 function LoginUser($roles=[]) /*Подпрограмма*/
 {
-    if (empty($_SESSION["USER"]) || !empty($_POST)) { /*Супер глобальный массив. Он виден отовсюду и проверяем на наличие по ключу USER, который будет заполнен на 21 строке.*/
+    if (empty($_SESSION["USER"]) || !empty($_POST)) { /*|| - или. Супер глобальный массив. Он виден отовсюду и проверяем на наличие по ключу USER, который будет заполнен на 21 строке.*/
         if (login()){   /*Вызов функций.*/
 //            && $result["Role"] == "admin" Д/З
-            return;
+            if (!empty($roles)){
+                if (in_array($_SESSION["USER"]["Role"], $roles)){
+                    return;
+                }
+            }
+            else {
+                return;
+            }
         }
         header('HTTP/1.0 403 Forbidden'); /*Написать НАДО до любого вывода (session_start и header)*/ /*Это ошибочный заголовок (нормальный 200).*/
         print("User not logged in!");
@@ -45,6 +52,15 @@ function LoginUser($roles=[]) /*Подпрограмма*/
         exit();
     }
     else {
+        if (!empty($roles)){
+            if (in_array($_SESSION["USER"]["Role"], $roles)){
+                return;
+            }
+            header('HTTP/1.0 403 Forbidden'); /*Написать НАДО до любого вывода (session_start и header)*/ /*Это ошибочный заголовок (нормальный 200).*/
+            print("User not logged in!");
+            DrawForm();
+            exit();
+        }
 //        print_r($_SESSION);
     }
 }
