@@ -19,8 +19,6 @@ foreach ($fullcontent["USERS"] as $role){   /*Конструкция foreach п�
     }
 }
 if (!$correctuser){
-    header('HTTP/1.0 403 Forbidden'); /*Написать НАДО до любого вывода (session_start и header)*/ /*Это ошибочный заголовок (нормальный 200).*/
-    print("User not logged in!");
     DrawForm();
     exit();
 }
