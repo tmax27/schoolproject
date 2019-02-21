@@ -6,7 +6,7 @@ if (empty($_GET["id"])) {
     exit();
 }
 $db = mysqli_connect("schoolproject.test", "root", "", "schoolproject");
-if (preg_match("/^\d+$/", $_GET["id"])) {    /*Вся строка состоит из цифр. \d - одна цифра, + - больше*/
+if (preg_match("/^\d+$/", $_GET["id"])) {    /*Вся строка состоит из цифр. \d - одна цифра, + - больше*/    /*Начало текста, цифровой символ, одно или более, конец текста.*/
     if (!empty($_POST["BODY"])) {
         $db->query("update articles set `body`='" . $_POST["BODY"] . "',`title`='" . $_POST["TITLE"] . "' where id=" . $_GET["id"]);
     }
