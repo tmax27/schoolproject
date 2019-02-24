@@ -1,5 +1,5 @@
 <div class="menu">
-    <?php $result = $db->query("select id, menuitem from articles");
+    <?php $result = $db->query("select id, menuitem from articles where `deleted` = false");
     while ($menuitem = $result->fetch_assoc()) {
         //print("<li> <a href='?id=".$menuitem["id"]."'>".$menuitem["menuitem"]."</a> </li>");
         ?>
