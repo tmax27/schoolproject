@@ -62,7 +62,9 @@ $title = $fullcontent["TITLE"] ?>
 <?php
 if ($_SESSION["USER"]["Role"] == "admin"){
 ?>
-    <a href="/admin.php?id=<?php print($_GET["id"]); ?>" target="_blank">Редактировать</a>
+    <a href="/admin.php?id=<?php print($_GET["id"]); ?>" target="_blank">Редактировать</a><br>
+    <a href="/admin.php?id=<?php print($_GET["id"]); ?>" target="_blank">Dodati novo datoteko</a><br>
+    <a href="/admin.php?id=<?php print($_GET["id"]); ?>" target="_blank">Izbrisati datoteko</a><br>
 <?php
 }
 ?>

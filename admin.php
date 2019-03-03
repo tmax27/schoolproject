@@ -8,7 +8,7 @@ if (empty($_GET["id"])) {
 $db = mysqli_connect("schoolproject.test", "root", "", "schoolproject");
 if (preg_match("/^\d+$/", $_GET["id"])) {    /*Вся строка состоит из цифр. \d - одна цифра, + - больше*/    /*Начало текста, цифровой символ, одно или более, конец текста.*/
     if (!empty($_POST["BODY"])) {
-        $db->query("update articles set `body`='" . $_POST["BODY"] . "',`title`='" . $_POST["TITLE"] . "' where id=" . $_GET["id"]);
+        $db->query("update articles set `body`='" . $_POST["BODY"] . "',`title`='" . $_POST["TITLE"] . "', `users`='" . $_POST["USERS"] . "' where id=" . $_GET["id"]);
     }
     $result = $db->query("select * from articles where id=" . $_GET["id"]);
 } else {
@@ -30,6 +30,8 @@ $content = $fullcontent["BODY"];
 <body>
 <form method="post" action="admin.php?id=<?php print($_GET["id"]); ?>">
     <input type="text" name="TITLE" value="<?php print($fullcontent["TITLE"]); ?>"/><br/>
+    <input type="text" name="USERS" value="<?php print($fullcontent["USERS"]); ?>"/><br/>
+<!--    <select input type="text" name="USERS" value="--><?php //print($fullcontent["USERS"])?><!--"></select><br/>-->
     <textarea name="BODY" style="width: 700px; height: 400px"><?php print($content); ?>
 		</textarea>
     <button type="submit">
