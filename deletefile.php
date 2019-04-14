@@ -1,6 +1,6 @@
 <?php
 $db = mysqli_connect("schoolproject.test", "root", "", "schoolproject");
-$db->query("update articles set `deleted`= not deleted where `ID` = ".$_GET["id"]); /*Сюда входить только админ.*/
+$db->query("update articles set `deleted`= not deleted where `ID` = ".$_GET["id"]); /*Sem prihaja samo admin.*/
 /**
  * Created by PhpStorm.
  * User: Максим

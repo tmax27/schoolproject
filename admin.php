@@ -1,19 +1,19 @@
 <?php
-require "login.php"; /*Require и include работает быстрее, чем require_once и include_once. Иногда нам нужно подключать файл несколько раз.*/
-/*Проверить задан или нет ID*/
+require "login.php"; /*Require in include delujeta hitreje kot require_once in include_once. Včasih se nam je potrebno povezovati z datoteko nekajkrat.*/
+/*Preveriti na določanje ID.*/
 if (empty($_GET["id"])) {
-    print("Не задан ID-материал!");
+    print("Podatek o ID-ju ni določen!");
     exit();
 }
 $db = mysqli_connect("schoolproject.test", "root", "", "schoolproject");
-if (preg_match("/^\d+$/", $_GET["id"])) {    /*Вся строка состоит из цифр. \d - одна цифра, + - больше*/    /*Начало текста, цифровой символ, одно или более, конец текста.*/
+if (preg_match("/^\d+$/", $_GET["id"])) {    /*Cela niz je zgrajena iz številk. \d - ena številka, + - več*/    /*Začetek besedila, številčni znak, ena ali več, konec besedila.*/
     if (!empty($_POST["BODY"])) {
         print(implode("+", $_POST["USERS"]));
         $db->query("update articles set `body`='" . $_POST["BODY"] . "',`title`='" . $_POST["TITLE"] . "', `users`='" . implode("+", $_POST["USERS"]) . "' where id=" . $_GET["id"]);
     }
     $result = $db->query("select * from articles where id=" . $_GET["id"]);
 } else {
-    print("Неверный ID-материал!");
+    print("Podatek o ID-ju nepravilen!");
     exit();
 }
 $fullcontent = $result->fetch_assoc();
@@ -50,7 +50,7 @@ $content = $fullcontent["BODY"];
     </button>
 </form>
 </body>
-<!--Выводит BODY из HeidiSQL-->
-<!--Максимум символов зависит от 1 строки-->
+<!--Prikaže se BODY iz HeidiSQLja-->
+<!--Maksimalno število simbolov je odvisno od 1 nizi.-->
 
 <!--$_SESSION["USER"] == "admin"-->

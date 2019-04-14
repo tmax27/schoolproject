@@ -1,28 +1,28 @@
 <?php
-header('Content-Type: text/html; charset=utf-8'); /*кодировка*/
-include_once "functions.php"; /*include - запрашивает файл. Если нет информации, то даёт предуреждение. Require даёт фатальную ошибку (без функции)*/
+header('Content-Type: text/html; charset=utf-8'); /*kodiranje*/
+include_once "functions.php"; /*include - poizveduje datoteko. Če ni informacije, opozori. Require pa obveščuje usodno napako (brez funkcije.)*/
 LoginUser();
-$db = mysqli_connect("schoolproject.test", "root", "", "schoolproject"); /*Возвращает ошибочный код с последного соединения.*/
-if (empty($_GET["id"])) { /*Empty решает, настроена ли переменная величина внутри него.*/
-    $_GET["id"] = 1;    /*Строчка написано неверно, посколько задан ID. Harm code - из-за него код теряет гибкость.*/
+$db = mysqli_connect("schoolproject.test", "root", "", "schoolproject"); /*Vrača napačno napako od zadnje povezave.*/
+if (empty($_GET["id"])) { /*Empty se določa, ali je oblikovana spremenljivka znotraj pogoja.*/
+    $_GET["id"] = 1;    /*Ta niz je napisana narobe, saj je določen ID. Harm code – zaradi njega se koda izgubi prilagodljivost.*/
 }
-$result = $db->query("select * from articles where id=" . $_GET["id"]);    /*Написано неправильно.*/
+$result = $db->query("select * from articles where id=" . $_GET["id"]);    /*Napisano je narobe.*/
 /*print_r($result->fetch_assoc());*/
-$fullcontent = $result->fetch_assoc(); /*fetch_assoc возвращает текущий ряд набора результатов как объект.*/
-$fullcontent["USERS"]=explode("+", $fullcontent["USERS"]); /*delimiter - разделитель*/
+$fullcontent = $result->fetch_assoc(); /*fetch_assoc vrača trenutno vrsto opreme rezultatov kot predmet.*/
+$fullcontent["USERS"]=explode("+", $fullcontent["USERS"]); /*delimiter - izločevalec*/
 //print_r($fullcontent["USERS"]);
-//print_r($_SESSION["USER"]["Role"]); /*Выводит статус пользователя.*/
+//print_r($_SESSION["USER"]["Role"]); /*Pokaže se uporabnikov položaj.*/
 $correctuser = false;
-foreach ($fullcontent["USERS"] as $role){   /*Конструкция foreach предоставляет простой способ перебора массивов. Цикл ролей*/
-    if ($role == $_SESSION["USER"]["Role"]){ /*Сравнивает роль конкретного пользователя.*/
-        $correctuser = true; /*Заполняет переменную.*/
+foreach ($fullcontent["USERS"] as $role){   /*Gradnja foreach se predstavlja kot enostaven način štetje nizov. Cikel vlogov*/
+    if ($role == $_SESSION["USER"]["Role"]){ /*Primerja vlogo konkretnega uporabnika.*/
+        $correctuser = true; /*Zapolnja spremenljivko.*/
     }
 }
 if (!$correctuser){
     DrawForm();
     exit();
 }
-$content = $fullcontent["BODY"];    /*$ - переменная*/
+$content = $fullcontent["BODY"];    /*$ - spremenljivka*/
 $title = $fullcontent["TITLE"] ?>
 <!DOCTYPE html>
 <html>
@@ -71,11 +71,3 @@ if ($_SESSION["USER"]["Role"] == "admin"){
 <div class="footer"></div>
 </body>
 </html>
-<!--Д/З Убрать "Редактировать" Если кто-то зашёл под АДМИН, он может видеть "Редактировать"-->
-<!--Нужно, чтобы вместо главной страницы открылась страница admin.php. Если зарегистрировался admin, то появится кнопка "Редактировать",
-если не админ, тогда этой кнопки не будет.-->
-
-<!--Прочитать программы, подготовить вопросы. Прочитать про глобальные массивы и конкретно про директива autosession_start.-->
-<!-- autosession_start - определяет, будет ли модуль сессии запускать сессию автоматически при старте. Значение по умолчанию 0 (отключено).-->
-
-<!--Разбирать сайт; узнать, что по информатике; зарегистрироваться GitHub-->
