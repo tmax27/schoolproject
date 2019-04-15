@@ -46,7 +46,7 @@ $content = $fullcontent["BODY"];
     <textarea name="BODY" style="width: 700px; height: 400px"><?php print($content); ?>
 		</textarea>
     <button type="submit">
-        Save
+        Shrani
     </button>
 </form>
 </body>

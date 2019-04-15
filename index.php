@@ -4,7 +4,7 @@ include_once "functions.php"; /*include - poizveduje datoteko. Če ni informacij
 LoginUser();
 $db = mysqli_connect("schoolproject.test", "root", "", "schoolproject"); /*Vrača napačno napako od zadnje povezave.*/
 if (empty($_GET["id"])) { /*Empty se določa, ali je oblikovana spremenljivka znotraj pogoja.*/
-    $_GET["id"] = 1;    /*Ta niz je napisana narobe, saj je določen ID. Harm code – zaradi njega se koda izgubi prilagodljivost.*/
+    $_GET["id"] = 1;    /*Ta niz je napisan narobe, saj je določen ID. Harm code – zaradi njega se koda izgubi prilagodljivost.*/
 }
 $result = $db->query("select * from articles where id=" . $_GET["id"]);    /*Napisano je narobe.*/
 /*print_r($result->fetch_assoc());*/

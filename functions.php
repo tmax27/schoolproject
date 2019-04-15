@@ -15,7 +15,7 @@ function login()
         $login = (strtolower($_POST["login"])); /*Premestimo v spodnji register.    Strtolower išče v pogoju pozicijo prve možnosti podpogoja.*/
         $password = sha1($_POST["password"]);
         /*sha1 prevaja podatke, ki smo napisali v password in jih kriptira: napisali smo geslo, sha1 pa ga prevaja v kombinacijo črk in številk. Ko vnesemo geslo, sha1 preverja kombinacijo s tistimi, ki so v bazi podatkov.*/
-        if (preg_match("/^[a-z\d]+$/", $login)) {   /*Preg_match выполняет глобальное совмещение обычного выражения (из букв и цифр).*/
+        if (preg_match("/^[a-z\d]+$/", $login)) {   /*Preg_match naredi globalno kombinacijo običajnega izraza (črk in številk).*/
             $result = $db->query("select * from `users` where `login`='$login' and `password`='$password'")->fetch_assoc(); /*Query - raziskava*/ /*Iščemo informacijo o uporabniku.*/
 //            print_r($result);
 //            print_r($_POST);
@@ -65,16 +65,16 @@ function LoginUser($roles=[]) /*Podprogram*/
 function DrawForm()
 {
     header('HTTP/1.0 403 Forbidden'); /*NUJNO je napisati do katerega koli zaključka (session_start и header)*/ /*To je napačen naslov(normalen je 200).*/
-    print("User not logged in!");
+    print("Uporabnik ni prijavljen!");
     ?>
     <form method="post">
-        <label>login
+        <label>Uporabniško ime:
             <!--Label opredeli besedilo za input. Ta oznaka je potrebna, da bi tja lahko vneseli podatke.-->
             <input type="text" name="login"/>
         </label><br>
-        <label>password
+        <label>Geslo:
             <input type="password" name="password"/>
         </label><br>
-        <button type="submit">Log in</button>
+        <button type="submit">Prijava</button>
     </form><?php
 }
